@@ -24,3 +24,19 @@ mod android{
         
     }
 }
+fn get_mobile_app_dir()-> ParhBuf {
+    #[cfg(target_os = "android")]
+    {
+        ParhBuf::from("/storage/emulated/0/Android/data")
+            .join("com.example.app")
+            .join("files")
+            
+    }
+
+}
+#[test]
+fn test_mobile_app_lifecycle_e2e(){
+    println!("====TEST-E2E====");
+    let app_dir = get_mobile_app_dir();
+    fs::create_dir_all(&app_dir).expect("")
+}
